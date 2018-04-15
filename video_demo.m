@@ -23,8 +23,8 @@ grasta_path; % Add search path
 DATASET         = 'lobby';
 
 % Set your video path and groundtruth path like these
-video_path    = '/Users/jhe/Documents/MATLAB/myCode/Data/CV';
-gt_video_path = '/Users/jhe/Documents/MATLAB/myCode/Data/CV/GroundTruth';
+video_path    = '/Users/kingwang/Documents/MATLAB/grasta/video';
+gt_video_path = '/Users/kingwang/Documents/MATLAB/grasta/video/GroundTruth';
 
 if strcmp(DATASET,'lobby'),    
     VIDEOPATH = [video_path filesep 'lobby/'];
@@ -84,7 +84,7 @@ SAMPLING                    = 0.1;  % Use how much information to track the subs
 thresh                      = 0.2;
 MAX_FRAME                   = -1;   % -1 means seperating all the frames
 
-OPTIONS.USE_MEX             = 1;
+OPTIONS.USE_MEX             = 0;
 fprintf('Real-time seperation by Grasta with subsampling %.2f%%\n',100*SAMPLING);
 fgs_grasta = bgfg_seperation_grasta( bgU, VIDEOPATH, SAMPLING ,status,OPTIONS, OPTS,thresh,FPS_ONLY, frame_names,MAX_FRAME);
 
@@ -106,7 +106,7 @@ FPS_ONLY                    = 1;    % if you want to measure the FPS performance
 SAMPLING                    = 0.2;  % Use how much information to track the subspace.
 thresh                      = 0.2;
 MAX_FRAME                   = -1;   % -1 means seperating all the frames
-OPTIONS.USE_MEX             = 1;
+OPTIONS.USE_MEX             = 0;
 fprintf('Seperating the whole video sequence by grasta...\n');
 [video_grasta_fg,video_grasta_bg, vInfo] = bgfg_seperation_grasta( bgU, VIDEOPATH, SAMPLING ,status,OPTIONS, OPTS,thresh,FPS_ONLY, video_frame_name,MAX_FRAME);
 
