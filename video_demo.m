@@ -23,8 +23,8 @@ grasta_path; % Add search path
 DATASET         = 'lobby';
 
 % Set your video path and groundtruth path like these
-video_path    = '/Users/kingwang/Documents/MATLAB/grasta/video';
-gt_video_path = '/Users/kingwang/Documents/MATLAB/grasta/video/GroundTruth';
+video_path    = './video';
+gt_video_path = './video/GroundTruth';
 
 if strcmp(DATASET,'lobby'),    
     VIDEOPATH = [video_path filesep 'lobby/'];
