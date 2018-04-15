@@ -102,7 +102,7 @@ axis([0 0.2 0 .9]);grid on;
 %% Make video -- grasta
 OPTS.MAX_ITER               = 20;
 OPTIONS.CONSTANT_STEP       = 1e-2; % use the constant step-size
-FPS_ONLY                    = 1;    % if you want to measure the FPS performance, please let FPS_ONLY=1
+FPS_ONLY                    = 0;    % if you want to measure the FPS performance, please let FPS_ONLY=1
 SAMPLING                    = 0.2;  % Use how much information to track the subspace.
 thresh                      = 0.2;
 MAX_FRAME                   = -1;   % -1 means seperating all the frames
@@ -112,7 +112,7 @@ fprintf('Seperating the whole video sequence by grasta...\n');
 
 %% Make video -- ReProCS(mod)
 batch_size                  = 400; % training size for the initial clean background ReProCSmod by IALM
-FPS_ONLY                    = 1;    % if you want to measure the FPS performance, please let FPS_ONLY=1
+FPS_ONLY                    = 0;    % if you want to measure the FPS performance, please let FPS_ONLY=1
 IALM_MAXITER                = 10;
 MAX_FRAME                   = -1;
 thresh                      = 0.2;
@@ -125,7 +125,7 @@ fprintf('Seperating the whole video sequence by ReProCS(mod)...\n');
 
 %% Make video -- median filter
 MEDIAN_BUF                  = 20;
-FPS_ONLY                    = 1;
+FPS_ONLY                    = 0;
 thresh                      = 0.2;
 MAX_FRAME                   = -1;
 fprintf('Seperating the whole video sequence by median filter...\n');
