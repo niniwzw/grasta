@@ -7,8 +7,15 @@
 %%
 
 function [fgs_cmp,bgs_cmp,vInfo] = bgfg_seperation_grasta( U_hat, videopath, subsampling , status, OPTIONS, OPTS,...
-                                       thresh,FPS_ONLY, frame_names, MAX_FRAME)
+                                       thresh,FPS_ONLY, frame_names, MAX_FRAME, RGB)
                                    
+chan = 1;
+if RGB == 'G',
+    chan = 2;
+elseif RGB == 'B',
+    chan = 3;
+end
+
 FILE_EXT        = '.bmp';
 frame_count     = 0;
 
@@ -16,13 +23,13 @@ frame_count     = 0;
 Dir_lists = dir(videopath);
 Video_Length = length(Dir_lists);
 
-if ~FPS_ONLY,    
-    figure;
-    h_fg = subplot(2,2,1);set(gca,'nextplot','replacechildren');title('Foreground');
-    h_fg_bw = subplot(2,2,2);set(gca,'nextplot','replacechildren');title('Thresholded-Foreground');
-    h_bg = subplot(2,2,3);set(gca,'nextplot','replacechildren');title('Background');
-    h_img = subplot(2,2,4);set(gca,'nextplot','replacechildren');title('Video');
-end
+% if ~FPS_ONLY,    
+%     figure;
+%     h_fg = subplot(2,2,1);set(gca,'nextplot','replacechildren');title('Foreground');
+%     h_fg_bw = subplot(2,2,2);set(gca,'nextplot','replacechildren');title('Thresholded-Foreground');
+%     h_bg = subplot(2,2,3);set(gca,'nextplot','replacechildren');title('Background');
+%     h_img = subplot(2,2,4);set(gca,'nextplot','replacechildren');title('Video');
+% end
 
 t_start = tic;
 for i=1:Video_Length,
@@ -38,7 +45,7 @@ for i=1:Video_Length,
     
     % prepare the image
     I = imread(fname);
-    I = double(rgb2gray(I));
+    I = double(I(:,:,chan));
     
     if frame_count==1,
         [rows,cols]     = size(I);
@@ -88,12 +95,12 @@ for i=1:Video_Length,
         end
     end
     
-    if ~FPS_ONLY,
-        axes(h_bg); imagesc(bg_img);colormap gray;axis off;axis ij ;
-        axes(h_img); imagesc(o_img);colormap gray;axis off;axis ij ;
-        axes(h_fg); imagesc(s_img);colormap gray;axis off;axis ij ;        
-        axes(h_fg_bw); imagesc(s_img_bw);colormap gray;axis off;axis ij ;        
-    end
+%     if ~FPS_ONLY,
+%         axes(h_bg); imagesc(bg_img);colormap gray;axis off;axis ij ;
+%         axes(h_img); imagesc(o_img);colormap gray;axis off;axis ij ;
+%         axes(h_fg); imagesc(s_img);colormap gray;axis off;axis ij ;        
+%         axes(h_fg_bw); imagesc(s_img_bw);colormap gray;axis off;axis ij ;        
+%     end
     
     if frame_count >= MAX_FRAME && MAX_FRAME~=-1,
         break;

@@ -75,6 +75,8 @@ TRAINING_SAMPLING           = 0.3;   % Use how much information to train the fir
 t_start = tic;
 [bgU, status, OPTS]  = bgtraining( VIDEOPATH, OPTIONS, max_cycles, TRAINING_SAMPLING, training_size,FPS_ONLY,TRAIN_FRAME);
 toc(t_start);
+fprintf("bgtraining over...\n")
+fprintf("\n")
 
 %% Real-time background/foreground separation by Grasta
 OPTS.MAX_ITER               = 20;
